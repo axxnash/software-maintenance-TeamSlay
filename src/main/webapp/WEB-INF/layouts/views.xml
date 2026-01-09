@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <!-- Default Template -->
+    <definition name="home" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/home.jsp" />
+    </definition>
+    <definition name="login" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/login.jsp" />
+    </definition>
+    
+    <!-- Room Management Admin Pages -->
+    
+    <definition name="admin/rooms" extends="DefaultTemplate">
+        <put-attribute name="body"      value="/WEB-INF/views/admin/rooms.jsp" />
+    </definition>
+    
+    <definition name="roomFeatures" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/roomFeatures.jsp" />
+    </definition>
+    
+    <!-- Rooms Front End -->
+    
+    <definition name="rooms" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/roomDir.jsp" />
+    </definition>
+    <definition name="roomView" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/roomView.jsp" />
+    </definition>
+    
+    <!-- Booking Page -->
+    
+    <definition name="book" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/booking.jsp" />
+    </definition>
+    
+    <definition name="bookingConfirm" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/bookingConfirm.jsp" />
+    </definition>
+    
+    <definition name="bookingEdit" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/bookingEdit.jsp" />
+    </definition>
+    
+    <!-- Contact Page -->
+    
+    <definition name="contact" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/contact.jsp" />
+    </definition>
+    <definition name="contactResult" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/contactResult.jsp" />
+    </definition>
+    
+    <!-- Register -->
+    
+    <definition name="register" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/register.jsp" />
+    </definition>
+    
+    <definition name="notifications" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/register.jsp" />
+    </definition>
+    <definition name="admin/reports" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/admin/reports.jsp" />
+    </definition>
+    
+    
+    <!-- Admin Template -->
+    <definition name="admin.home" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/admin/home.jsp" />
+    </definition>
+    <definition name="admin.accounts" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/admin/accounts.jsp" />
+    </definition>
+    <definition name="admin.photos" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/admin/photos.jsp" />
+    </definition>
+    
+</tiles-definitions>
