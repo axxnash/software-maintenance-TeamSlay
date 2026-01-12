@@ -23,4 +23,4 @@ Hotel reservation system for Humber College's Distributed Computing using Java c
 - Danny Ardoña @dardona
 - Georgii Didok @gdidok
 - Trevor Smart @Shifdra
-  Edited by Nuha
+ 
