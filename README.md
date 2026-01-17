@@ -3,7 +3,7 @@ Hotel reservation system for Humber College's Distributed Computing using Java c
 
 ##Technologies Used
 
-- Spring MVC
+- Spring MVP
 - Apache Tiles
 - JSTL
 - Boostrap
