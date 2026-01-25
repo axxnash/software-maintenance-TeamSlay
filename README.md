@@ -1,4 +1,4 @@
-# HotelMaster System
+# HotelMaster System A
 Hotel reservation system for Humber College's Distributed Computing using Java course. This project is the culmination of our knowledge accumulated while at Humber. In addition to the academic expectations of Humber’s curriculum, other technologies listed below were utilized to further demonstrate our abilities as programmers.
 
 ##Technologies Used
