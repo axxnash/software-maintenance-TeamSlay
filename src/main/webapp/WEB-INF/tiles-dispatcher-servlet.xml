@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <context:annotation-config />
-    <context:component-scan base-package="hotelmaster, hotelmaster.account, hotelmaster.notification"/>
+    <context:component-scan base-package="hotelmaster, hotelmaster.account, hotelmaster.notification, hotelmaster.admin"/>
 
     <mvc:annotation-driven validator="myBeansValidator" />
     <mvc:default-servlet-handler />
@@ -46,11 +46,8 @@
     
     <bean id="AccountsDao" class="hotelmaster.account.AccountsDaoImpl" />
     
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-        <property name="url" value="jdbc:mysql://dmdev.ca:3306/themegos_hotel_master" />
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="username" value="themegos_hotel_m" />
-        <property name="password" value="A2b8rbd6%rT9" />
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/HotelMasterDB"/>
     </bean>
     
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">

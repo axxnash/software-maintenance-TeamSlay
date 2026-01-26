@@ -10,6 +10,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <c:set var="now" value="<%=new java.util.Date()%>" />
 <c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
@@ -60,7 +61,32 @@
         
         <c:choose>
             <c:when test="${report.size() > 0}">
-                <h2>Report</h2>
+                <div style="margin-bottom: 15px;">
+                    <h2 style="display: inline-block;">Report</h2>
+                    <div style="float: right;">
+                        <form:form modelAttribute="reportForm" action="${contextPath}/admin/reports/export/csv" method="POST" style="display: inline-block; margin-right: 10px;">
+                            <form:hidden path="checkInDate"/>
+                            <form:hidden path="checkOutDate"/>
+                            <form:hidden path="lowerPricePerNight"/>
+                            <form:hidden path="upperPricePerNight"/>
+                            <form:hidden path="floor"/>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-file-excel-o"></i> Export to CSV
+                            </button>
+                        </form:form>
+                        <form:form modelAttribute="reportForm" action="${contextPath}/admin/reports/export/pdf" method="POST" style="display: inline-block;">
+                            <form:hidden path="checkInDate"/>
+                            <form:hidden path="checkOutDate"/>
+                            <form:hidden path="lowerPricePerNight"/>
+                            <form:hidden path="upperPricePerNight"/>
+                            <form:hidden path="floor"/>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-file-pdf-o"></i> Export to PDF
+                            </button>
+                        </form:form>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
