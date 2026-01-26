@@ -38,6 +38,10 @@ public class Booking {
         return booking_id;
     }
     
+    public void setBooking_id(int booking_id){
+        this.booking_id = booking_id;
+    }
+    
     public String getStartDate() {
         return startDate;
     }

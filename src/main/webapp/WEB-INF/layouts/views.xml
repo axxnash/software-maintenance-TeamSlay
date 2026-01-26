@@ -45,6 +45,10 @@
         <put-attribute name="body"	value="/WEB-INF/views/bookingEdit.jsp" />
     </definition>
     
+    <definition name="bookingList" extends="DefaultTemplate">
+        <put-attribute name="body"	value="/WEB-INF/views/bookingList.jsp" />
+    </definition>
+    
     <!-- Contact Page -->
     
     <definition name="contact" extends="DefaultTemplate">

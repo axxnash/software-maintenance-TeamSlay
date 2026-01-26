@@ -6,6 +6,7 @@
 package hotelmaster.booking;
 
 import hotelmaster.Booking;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import hotelmaster.Booking;
  */
 public interface BookingDAOInterface {
     int insertBooking(Booking booking);
+    List<Booking> getBookingsByAccountId(int accountId);
 }

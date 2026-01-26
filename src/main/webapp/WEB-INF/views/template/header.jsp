@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <header>
      <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -32,11 +33,14 @@
                     
                     <li class="dropdown">
                         <c:choose>
+                            <c:when test="${sessionScope['scopedTarget.accountSession'].account.id > '0'}">
+                                <a href="${contextPath}/mybookings" class="dropdown-toggle" id="btnViewBookings" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-calendar"></i> My Bookings</a>
+                            </c:when>
                             <c:when test="${sessionScope['scopedTarget.bookingSession'].booking.roomID > '0'}">
-                                <a href="/rooms/${sessionScope['scopedTarget.bookingSession'].booking.bookingURL}/book" class="dropdown-toggle" id="btnViewBookings" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-home"></i> View Bookings</a>
+                                <a href="${contextPath}/rooms/${sessionScope['scopedTarget.bookingSession'].booking.bookingURL}/book" class="dropdown-toggle" id="btnViewBookings" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-home"></i> View Booking</a>
                             </c:when>
                             <c:otherwise>
-                                <!--<a href="/rooms" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-home"></i> Book a Room</a>-->
+                                <!--<a href="${contextPath}/rooms" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-home"></i> Book a Room</a>-->
                             </c:otherwise>
                         </c:choose>
                     </li>
@@ -47,10 +51,10 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/admin/accounts">Manage Users</a></li>
-                                        <li><a href="/admin/photos">Manage Photos</a></li>
-                                        <li><a href="/admin/rooms">Manage Rooms</a></li>
-                                        <li><a href="/admin/reports">Generate Reports</a></li>
+                                        <li><a href="${contextPath}/admin/accounts">Manage Users</a></li>
+                                        <li><a href="${contextPath}/admin/photos">Manage Photos</a></li>
+                                        <li><a href="${contextPath}/admin/rooms">Manage Rooms</a></li>
+                                        <li><a href="${contextPath}/admin/reports">Generate Reports</a></li>
                                     </ul>
                                 </li>
                             </c:if>
@@ -109,7 +113,7 @@
                 <div class="alert ${notification.getAlertClass()} alert-dismissible fade in" role="alert">
                     <div class="container">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
+                            <span aria-hidden="true">ï¿½</span>
                         </button> 
                         <strong>${notification.title}</strong> ${notification.message}
                     </div>

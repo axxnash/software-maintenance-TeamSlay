@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 
 <div class="container adminContainer">
@@ -51,7 +52,7 @@
                             </div>
                             <div class="modal-body container-fluid">
                                 <c:set var="checkCounter" value="${0}"/>
-                                <form:form id="addImageForm" action="/admin/photos/add" modelAttribute="photoBucket" method="POST" enctype="multipart/form-data">
+                                <form:form id="addImageForm" action="${contextPath}/admin/photos/add" modelAttribute="photoBucket" method="POST" enctype="multipart/form-data">
                                     <div class="container-fluid">
                                     <label id="uploadBtn" class="text-center btn-primary">
                                         <i class="fa fa-plus-square-o" aria-hidden="true"></i>
@@ -72,12 +73,12 @@
                                         <c:if test="${room.roomID eq photo.roomID}" >
                                             <div class="row photoRow">
                                                 <div class="col-sm-6">
-                                                    <img style="width: 100%;" src="/getPhoto?ID=${photo.imageID}" alt="placeholder">
+                                                    <img style="width: 100%;" src="${contextPath}/getPhoto?ID=${photo.imageID}" alt="placeholder">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <h3 class="text-center"><c:out value="${photo.title}"/></h3>
                                                     <div class="button-group photoButtonGroup">
-                                                        <form:form action="/admin/photos/update" modelAttribute="photoBucket" method="POST" enctype="multipart/form-data">
+                                                        <form:form action="${contextPath}/admin/photos/update" modelAttribute="photoBucket" method="POST" enctype="multipart/form-data">
                                                             <input type="number" value="${photo.imageID}" name="imageID" class="hidden"/>
                                                             <input type="number" value="${room.roomID}" name="roomID" class="hidden"/>
                                                             <c:choose>
@@ -89,7 +90,7 @@
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </form:form>
-                                                        <form:form action="/admin/photos/delete" modelAttribute="photoBucket" method="POST" enctype="multipart/form-data">
+                                                        <form:form action="${contextPath}/admin/photos/delete" modelAttribute="photoBucket" method="POST" enctype="multipart/form-data">
                                                             <input type="number" value="${photo.imageID}" name="imageID" class="hidden"/>
                                                             <button id="delete${room.roomID}" type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>  
                                                         </form:form>

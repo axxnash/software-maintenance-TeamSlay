@@ -124,14 +124,18 @@
         <div class="col-xs-4 column ui-sortable roomBlock">
                 <h3><c:out value="${room.getRoomName()}"/></h3>
                 <div class="roomPreview">
+                    <c:set var="hasImage" value="false"/>
                     <c:forEach var="image" items="${photoList}">
                         <c:if test="${room.roomID eq image.roomID}" >
+                            <c:set var="hasImage" value="true"/>
                             <form:form>
-                                <img src="/getPhoto?ID=${image.imageID}" alt="placeholder">
+                                <img src="${contextPath}/getPhoto?ID=${image.imageID}" alt="placeholder">
                             </form:form>                        
                         </c:if>
                     </c:forEach>
-
+                    <c:if test="${!hasImage}">
+                        <img src="${contextPath}/resources/img/room_photo.jpg" alt="Room placeholder" style="width:100%;">
+                    </c:if>
                 </div>
                 <a style="float: right;" href="${pageContext.request.contextPath}/rooms/${room.getRoomViewURL()}" class="btn btn-primary">Details</a>
                 <p class="priceLabel">Just $<strong><c:out value="${room.getPricePerNight()}"/></strong> per night</p>

@@ -84,19 +84,28 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <c:forEach var="image" items="${photoList}" varStatus="loop">
-                        <c:if test="${image.roomID == room.roomID}">
-                        <div class="item 
-                        <c:choose>
-                            <c:when test="${loop.index == 0}">
-                                active
-                            </c:when>
-                        </c:choose>
-                        ">
-                            <img class="img-responsive" src="/getPhoto?ID=${image.imageID}" alt="Hotel Room Image">
-                        </div>
-                        </c:if>
-                    </c:forEach>
+                    <c:choose>
+                        <c:when test="${empty photoList or photoList.size() == 0}">
+                            <div class="item active">
+                                <img class="img-responsive" src="${contextPath}/resources/img/room_photo.jpg" alt="Hotel Room Image">
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="image" items="${photoList}" varStatus="loop">
+                                <c:if test="${image.roomID == room.roomID}">
+                                <div class="item 
+                                <c:choose>
+                                    <c:when test="${loop.index == 0}">
+                                        active
+                                    </c:when>
+                                </c:choose>
+                                ">
+                                    <img class="img-responsive" src="${contextPath}/getPhoto?ID=${image.imageID}" alt="Hotel Room Image">
+                                </div>
+                                </c:if>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>                        
         </div>
