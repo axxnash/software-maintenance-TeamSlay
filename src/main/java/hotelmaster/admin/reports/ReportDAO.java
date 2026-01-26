@@ -36,8 +36,8 @@ public class ReportDAO implements ReportDAOInterface {
         
         if (floor.equalsIgnoreCase("All")){
             String selectQuery =  "SELECT b.account_id, b.room_id, b.check_in_date, b.check_out_date, r.room_name, r.price_per_night, r.floor, b.check_out_date - b.check_in_date FROM booking b JOIN room r ON b.room_id = r.room_id "
-                    + "WHERE check_in_date >= ? AND check_out_date <= ? AND price_per_night BETWEEN ? AND ?";
-            Object[] params = new Object[]{checkInDate, checkOutDate, lowerPricePerNight, upperPricePerNight};
+                    + "WHERE check_in_date <= ? AND check_out_date >= ? AND price_per_night BETWEEN ? AND ?";
+            Object[] params = new Object[]{checkOutDate, checkInDate, lowerPricePerNight, upperPricePerNight};
             int[] types = new int[]{Types.VARCHAR, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE};
 
             reportList = jdbcTemplate.query(selectQuery, params, types, new RowMapper<Report>() {
@@ -62,8 +62,8 @@ public class ReportDAO implements ReportDAOInterface {
         }
         else {
             String selectQuery =  "SELECT b.account_id, b.room_id, b.check_in_date, b.check_out_date, r.room_name, r.price_per_night, r.floor, b.check_out_date - b.check_in_date FROM booking b JOIN room r ON b.room_id = r.room_id "
-                    + "WHERE check_in_date >= ? AND check_out_date <= ? AND price_per_night BETWEEN ? AND ? AND FLOOR = ?";
-            Object[] params = new Object[]{checkInDate, checkOutDate, lowerPricePerNight, upperPricePerNight, floor};
+                    + "WHERE check_in_date <= ? AND check_out_date >= ? AND price_per_night BETWEEN ? AND ? AND FLOOR = ?";
+            Object[] params = new Object[]{checkOutDate, checkInDate, lowerPricePerNight, upperPricePerNight, floor};
             int[] types = new int[]{Types.VARCHAR, Types.VARCHAR, Types.DOUBLE, Types.DOUBLE, Types.VARCHAR};
 
             reportList = jdbcTemplate.query(selectQuery, params, types, new RowMapper<Report>() {
