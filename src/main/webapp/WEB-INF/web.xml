@@ -23,9 +23,27 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>WEB-INF/spring-servlet.xml</param-value>
     </context-param>
+    
+    <!-- CR-08: Session timeout configuration (30 minutes) -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>false</secure>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+    
     <listener>
         <listener-class>
             org.springframework.web.context.request.RequestContextListener 
         </listener-class>
-  </listener>
+    </listener>
+    
+    <!-- CR-08: Session monitoring listener -->
+    <listener>
+        <listener-class>
+            hotelmaster.util.SessionMonitorListener
+        </listener-class>
+    </listener>
 </web-app>

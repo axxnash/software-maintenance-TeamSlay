@@ -13,11 +13,16 @@
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <context:annotation-config />
-    <context:component-scan base-package="hotelmaster, hotelmaster.account, hotelmaster.notification"/>
+    <context:component-scan base-package="hotelmaster, hotelmaster.account, hotelmaster.notification, hotelmaster.util"/>
 
     <mvc:annotation-driven validator="myBeansValidator" />
     <mvc:default-servlet-handler />
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    
+    <!-- CR-08: Session timeout interceptor -->
+    <mvc:interceptors>
+        <bean class="hotelmaster.util.SessionTimeoutInterceptor" />
+    </mvc:interceptors>
 
     <!--
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
