@@ -5,6 +5,8 @@
  */
 package hotelmaster.contact.form;
 
+import hotelmaster.notification.NotificationService;
+import hotelmaster.notification.NotificationType;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class ContactController {
     @Autowired
     private JavaMailSender mailSender;
     
+    @Autowired
+    private NotificationService notificationService;
+    
     @RequestMapping(value="/contact", method = RequestMethod.GET)
     public ModelAndView showContactForm(){
         ModelAndView modelAndView = new ModelAndView("contact");
@@ -43,6 +48,30 @@ public class ContactController {
     @RequestMapping(value="/contact", method = RequestMethod.POST)
     public ModelAndView processForm(@ModelAttribute("contactForm") @Valid ContactForm cf,  BindingResult result, Errors errors) {
          ModelAndView modelAndView = new ModelAndView("contactResult");
+        
+        // CR-02: Check email format
+        if (cf.getEmail() == null || !cf.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            notificationService.add(
+                "Invalid Email",
+                "Please enter a valid email address.",
+                NotificationType.ERROR
+            );
+            modelAndView.setViewName("contact");
+            modelAndView.addObject("contactForm", cf);
+            return modelAndView;
+        }
+        
+        // CR-02: Check message is not empty
+        if (cf.getMessage() == null || cf.getMessage().trim().isEmpty()) {
+            notificationService.add(
+                "Empty Message",
+                "Message field cannot be empty.",
+                NotificationType.ERROR
+            );
+            modelAndView.setViewName("contact");
+            modelAndView.addObject("contactForm", cf);
+            return modelAndView;
+        }
         
         if (!result.hasErrors()){
             System.out.println("Form submitted: No Errors.");
