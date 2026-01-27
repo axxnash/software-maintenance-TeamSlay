@@ -244,13 +244,17 @@ public class RoomDAO implements RoomDAOInterface {
     
     /* ====== SEARCH FORM ====== */
     
-    public List<Room> roomSearch(int numOfGuests, String range, String sdate, String edate) {
+    public List<Room> roomSearch(int numOfGuests, String range, String sdate, String edate, Double minPrice, Double maxPrice) {
         
         jdbcTemplate = new JdbcTemplate(dataSource);
                 
         BigDecimal lower, upper;
         
-        if (!range.contains("-")) {
+        // If explicit price range provided, use it; otherwise fall back to range dropdown
+        if (minPrice != null && maxPrice != null) {
+            lower = BigDecimal.valueOf(minPrice);
+            upper = BigDecimal.valueOf(maxPrice);
+        } else if (!range.contains("-")) {
             String newRange = range.substring(0, 3);
             lower = BigDecimal.valueOf(Double.parseDouble(newRange));
             upper = BigDecimal.valueOf(9999.99);

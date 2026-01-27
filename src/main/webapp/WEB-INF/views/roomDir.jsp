@@ -18,6 +18,8 @@
         var range = "${searchParams.getRange()}";
         var checkInDate = "${searchParams.getCheckInDate()}";
         var checkOutDate = "${searchParams.getCheckOutDate()}";
+        var minPrice = "${searchParams.getMinPrice()}";
+        var maxPrice = "${searchParams.getMaxPrice()}";
         
         if (numOfGuests > 0) {
             $('#ddlGuests').val(numOfGuests);
@@ -30,6 +32,13 @@
             var eDateArray = checkOutDate.split('-');
             var eDateNew = eDateArray[1] + '/' + eDateArray[2] + '/' + eDateArray[0];
             $('#txtEDate').val(checkOutDate);
+            
+            if (minPrice !== 'null' && minPrice !== '') {
+                $('#txtMinPrice').val(minPrice);
+            }
+            if (maxPrice !== 'null' && maxPrice !== '') {
+                $('#txtMaxPrice').val(maxPrice);
+            }
         }
     });
 </script>
@@ -74,6 +83,16 @@
                         <label>Check Out</label>
                         <form:input id="txtEDate" path="checkOutDate" placeholder="Check Out Date" type="date" class="form-control searchBarComp" />
                         <form:errors class="formError" path="checkOutDate" element="strong"/>
+                    </div>
+                    <div class="col-lg-6 searchBarComp">
+                        <label>Min Price ($)</label>
+                        <form:input id="txtMinPrice" path="minPrice" placeholder="Min Price" type="number" step="0.01" min="0" class="form-control searchBarComp" />
+                        <form:errors class="formError" path="minPrice" element="strong"/>
+                    </div>
+                    <div class="col-lg-6 searchBarComp">
+                        <label>Max Price ($)</label>
+                        <form:input id="txtMaxPrice" path="maxPrice" placeholder="Max Price" type="number" step="0.01" min="0" class="form-control searchBarComp" />
+                        <form:errors class="formError" path="maxPrice" element="strong"/>
                     </div>
                     <div class="col-lg-offset-4 col-lg-4 col-md-12"><br/>
                         <p><button class="btn btn-primary btn-block" type="submit">Search</button></p>

@@ -65,7 +65,14 @@ public class DirectoryController {
             HttpServletRequest htrequest, Errors errors) throws ParseException {
         ModelAndView modelAndView = new ModelAndView("rooms");
         
-        List<Room> roomList = roomDAO.roomSearch(searchParams.getNumOfGuests(), searchParams.getRange(), searchParams.getCheckInDate(), searchParams.getCheckOutDate());
+        List<Room> roomList = roomDAO.roomSearch(
+            searchParams.getNumOfGuests(), 
+            searchParams.getRange(), 
+            searchParams.getCheckInDate(), 
+            searchParams.getCheckOutDate(),
+            searchParams.getMinPrice(),
+            searchParams.getMaxPrice()
+        );
         roomDAO.setRoomFeatures(roomList);
         List<Photo> photoList = photoDAO.getAllPhotos();
         

@@ -14,6 +14,8 @@ public class SearchParams {
     private String range;
     private String checkInDate;
     private String checkOutDate;
+    private Double minPrice;
+    private Double maxPrice;
     
     public SearchParams() { }
     
@@ -47,6 +49,22 @@ public class SearchParams {
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
-    }    
+    }
+
+    public Double getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(Double minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public Double getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(Double maxPrice) {
+        this.maxPrice = maxPrice;
+    }
     
 }

@@ -65,6 +65,16 @@
                         <form:input path="checkOutDate" placeholder="Check Out Date" type="date" class="form-control searchBarComp" />
                         <form:errors class="formError" path="checkOutDate" element="strong"/>
                     </div>
+                    <div class="col-lg-6 searchBarComp">
+                        <label>Min Price ($)</label>
+                        <form:input path="minPrice" placeholder="Min Price" type="number" step="0.01" min="0" class="form-control searchBarComp" />
+                        <form:errors class="formError" path="minPrice" element="strong"/>
+                    </div>
+                    <div class="col-lg-6 searchBarComp">
+                        <label>Max Price ($)</label>
+                        <form:input path="maxPrice" placeholder="Max Price" type="number" step="0.01" min="0" class="form-control searchBarComp" />
+                        <form:errors class="formError" path="maxPrice" element="strong"/>
+                    </div>
                     <div class="col-lg-offset-4 col-lg-4 col-md-12"><br/>
                         <p><button class="btn btn-primary btn-block" type="submit">Search</button></p>
                     </div>
