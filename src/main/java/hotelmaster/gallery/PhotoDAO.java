@@ -38,7 +38,7 @@ public class PhotoDAO implements PhotoDAOInterface {
             
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-            String query = "SELECT * FROM room_images";
+            String query = "SELECT * FROM room_images ORDER BY thumbnail DESC, image_id ASC";
 
             List<Photo> photoList = jdbcTemplate.query(query, new RowMapper<Photo>() {
 
@@ -114,7 +114,7 @@ public class PhotoDAO implements PhotoDAOInterface {
         
         jdbcTemplate = new JdbcTemplate(dataSource);
                 
-        String query = "SELECT * FROM room_images WHERE room_id = " + roomID;
+        String query = "SELECT * FROM room_images WHERE room_id = " + roomID + " ORDER BY thumbnail DESC, image_id ASC";
         
         List<Photo> photos = jdbcTemplate.query(query, new RowMapper<Photo>() {
             

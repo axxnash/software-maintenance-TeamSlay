@@ -5,8 +5,11 @@
  */
 package hotelmaster;
 
+import java.util.Comparator;
+
 /**
- *
+ * Photo entity representing room images
+ * Enhanced for CR-07 with sorting capabilities
  * @author mathe_000
  */
 public class Photo {
@@ -71,5 +74,28 @@ public class Photo {
         this.title = title;
     }
     
+    /**
+     * Comparator to sort photos with primary images first
+     * CR-07: Improves gallery display consistency
+     */
+    public static final Comparator<Photo> PRIMARY_FIRST_COMPARATOR = new Comparator<Photo>() {
+        @Override
+        public int compare(Photo p1, Photo p2) {
+            // Primary photos (thumbnail=1) should come first
+            if (p1.getPrimary() != p2.getPrimary()) {
+                return Integer.compare(p2.getPrimary(), p1.getPrimary()); // Descending order
+            }
+            // If both are primary or both are not, sort by imageID
+            return Integer.compare(p1.getImageID(), p2.getImageID());
+        }
+    };
+    
+    /**
+     * Check if this is a primary/thumbnail image
+     * @return true if primary, false otherwise
+     */
+    public boolean isPrimary() {
+        return this.primary == 1;
+    }
     
 }
